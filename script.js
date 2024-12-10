@@ -50,10 +50,10 @@ function createHeart(xPos, yPos) {
     
     bodyEl.appendChild(heartEl);
     
-    // Remove heart after 3 seconds
+    // Remove heart after 5 seconds
     setTimeout(() => {
         heartEl.remove();
-    }, 3000);
+    }, 5000);
 }
 
 function handleTouchMove(event) {

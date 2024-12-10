@@ -9,10 +9,10 @@ body {
 
 .heart {
     position: absolute;
-    background: url('https://cdn4.iconfinder.com/data/icons/essentials-74/24/028_-_Heart-256.png');
+    background: url('https://cdn.iconscout.com/icon/premium/png-256-thumb/heart-1429-1126402.png');
     background-size: cover;
     pointer-events: none;
-    animation: heartAnimation 3s linear forwards;
+    animation: heartAnimation 5s linear forwards;
 }
 
 @keyframes heartAnimation {
