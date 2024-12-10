@@ -33,7 +33,7 @@
 
 
 const bodyEl = document.querySelector("body");
-let heartInterval;
+let isGeneratingHearts = false;
 
 function createHeart(xPos, yPos) {
     const heartEl = document.createElement("div");
@@ -44,45 +44,52 @@ function createHeart(xPos, yPos) {
     heartEl.style.width = `${size}px`;
     heartEl.style.height = `${size}px`;
     
-    // Position the heart
+    // Position the heart exactly at touch point
     heartEl.style.left = `${xPos}px`;
     heartEl.style.top = `${yPos}px`;
     
     bodyEl.appendChild(heartEl);
     
-    // Remove heart after animation
+    // Remove heart after 3 seconds
     setTimeout(() => {
         heartEl.remove();
     }, 3000);
+}
+
+function handleTouchMove(event) {
+    // Prevent default touch behavior
+    event.preventDefault();
+    
+    // Only generate hearts if touch is active
+    if (isGeneratingHearts) {
+        const touch = event.touches[0];
+        const xPos = touch.clientX;
+        const yPos = touch.clientY;
+        createHeart(xPos, yPos);
+    }
 }
 
 function startHeartGeneration(event) {
     // Prevent default touch behavior
     event.preventDefault();
     
-    // Get the initial touch position
-    const touch = event.touches[0];
-    const initialX = touch.clientX;
-    const initialY = touch.clientY;
+    // Mark heart generation as active
+    isGeneratingHearts = true;
     
-    // Generate hearts continuously while touched
-    heartInterval = setInterval(() => {
-        // Add slight random variation to heart position
-        const offsetX = Math.random() * 40 - 20; // -20 to 20
-        const offsetY = Math.random() * 40 - 20;
-        createHeart(initialX + offsetX, initialY + offsetY);
-    }, 100); // Adjust timing as needed
+    // Create initial heart at touch point
+    const touch = event.touches[0];
+    const xPos = touch.clientX;
+    const yPos = touch.clientY;
+    createHeart(xPos, yPos);
 }
 
 function stopHeartGeneration() {
     // Stop generating hearts when touch ends
-    clearInterval(heartInterval);
+    isGeneratingHearts = false;
 }
 
 // Prevent default scrolling behaviors
-document.body.addEventListener('touchmove', (e) => {
-    e.preventDefault();
-}, { passive: false });
+document.body.addEventListener('touchmove', handleTouchMove, { passive: false });
 
 // Touch event listeners
 bodyEl.addEventListener("touchstart", startHeartGeneration);
