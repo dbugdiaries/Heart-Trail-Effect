@@ -9,7 +9,7 @@ body {
 
 .heart {
     position: absolute;
-    background: url('https://cdn.iconscout.com/icon/premium/png-256-thumb/heart-1429-1126402.png');
+    background: url('https://www.iconfinder.com/icons/9004840/heart_love_romance_like_icon');
     background-size: cover;
     pointer-events: none;
     animation: heartAnimation 5s linear forwards;

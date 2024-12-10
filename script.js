@@ -50,7 +50,7 @@ function createHeart(xPos, yPos) {
     
     bodyEl.appendChild(heartEl);
     
-    // Remove heart after 5 seconds
+    // Remove heart after 3 seconds
     setTimeout(() => {
         heartEl.remove();
     }, 5000);
